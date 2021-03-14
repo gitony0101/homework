@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{geometry}
+\geometry{left=2cm, right=2cm, top=1cm, bottom=2cm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{ctex}
+\usepackage{color,xcolor}
+\newenvironment{solution}{\begin{proof}[\indent\bf 解：]}{\end{proof}}
+\theoremstyle{remark}
+\newtheorem{exc}{习题}
+\newtheorem*{claim}{Claim}
+\title{第一次作业}
+\author{李得月19210180066}
+\date{\today}
+\begin{document}
+\maketitle
+\begin{exc}
+    How many independent sets in a length n path-graph?
+\end{exc}
+\begin{solution}
+    先声名几个记号。令$N_i(j) , 0\leq i \leq \lceil j \rceil$代表$j$个顶点的path-graph中元素个数为$i$的独立集的数量。特别声明一下，当
+    $i=0$时$N_0(j)$表示path-graph中空集的个数，$N_1(j)$表示单点集的个数。显然$N_0(j) = 1 ,\forall j \in \mathbb{N} ,N_1(j) = j ,\forall j \in \mathbb{N} $\\
+    令$N(n)$表示顶点个数为$n$的path-graph独立集的总个数。容易看出有关系
+    \begin{equation}\label{eq:1}
+        N(n) = 
+    \begin{cases}
+        \sum _{i=0}^m N_i(n) &当 n=2m-1 \\
+        \sum _{i=0}^m N_i(n) &当 n=2m
+    \end{cases}
+    \end{equation}
+    
+    \begin{claim}
+        有如下迭代式成立\[N_i(k) = \sum_{j=2i-3}^{k-2} N_{i-1}(j)\chi_{\{ k\geq 2i-1\} }
+        \quad ,0\leq i \leq \lceil k \rceil
+        \]
+    \end{claim}
+    下面证明这件事。当固定住独立集最左边的顶点为1时(此处我们从左到右给path-graph的节点依次编号$1,\ldots,k$)，让独立集中其他点遍历时的情况个数，等于在$k-2$个顶点的
+    path-grap中找i-1个独立集的个数，即$N_{i-1}(k-2)$。当固定独立集最左边顶点为2时，让其他点遍历的情况个数，等于在$k-3$个顶点的path-graph中找
+    i-1个独立集的个数，也就是$N_{i-1}(k-3)$。这样做下去，注意到我们最多让独立集中第一个元素跑到$k-2i+2$的位置(不然后面没有足够的位置容纳下
+    i-1个独立顶点)。于是claim成立。
+    
+    结合claim和事实（\ref{eq:1}）即可迭代地表示出独立集总个数。
+\end{solution}
+\begin{exc}
+    Derive the recurrence formula for GINO problem
+    \[\min_{\substack{x_1,\ldots,x_n}} \left[
+    \sum_{i=1}^n f_i(x_i) +
+    \sum_{i=1}^{n-1} \lambda_i(x_i-x_{i+1})^{+} +
+    \sum_{i-1}^{n-1} \mu_i(x_{i-1}-x_i)^{+}
+    \right]
+    \]
+    其中$f_i$为凸函数,$\lambda_i$与$\mu_i$非负
+\end{exc}
+\begin{solution}
+    我们可以把这个优化问题转化为最优控制问题去考虑。其中$x_1,x_2,\ldots,x_n$可以视作一条state
+    的轨道，而我们的控制就是选择下一个state。cost function是\[J(x_1,x_2,\ldots,x_n) = \sum_{i=1}^n f_i(x_i) +
+    \sum_{i=1}^{n-1} \lambda_i(x_i-x_{i+1})^{+} +
+    \sum_{i-1}^{n-1} \mu_i(x_{i+1}-x_i)^{+}\]
+    首先定义最优cost to go函数$J^*(x_i)$表示从$x_i$为起点未来的最优cost。于是我们有\[
+    \begin{align}
+        J^*(x_1,x_2,\ldots,x_n) &= \min_{\substack{x_1}}\left(f_1(x_1)+J^*(x_1)\right) \\
+        &= \min_{\substack{x_1}}\left(f_1(x_1)+\min_{\substack{x_2}}\left(f_2(x_2)+\lambda_1(x_1-x_2)^{+}+ \mu_1(x_2-x_1)^{+}+J^*(x_2)\right)\right)
+    \end{align}\]
+上式用了最优cost to go函数的迭代\[J(x_k) = \min_{\substack{x_{k+1}}}\left(f_{k+1}(x_{k+1}) +
+ \lambda_k(x_k-x_{k+1})^{+} + \mu_k(x_{k+1}-x_k)^{+} + J^*\left( x_{k+1} \right)\right),1 \leq k \leq n-1 \]用反证法易证。
+
+
+ 记$J^*(x_n)=0$,然后迭代即可。
+\end{solution}
+\end{document}
+% 用归纳法证明。显然我们可以归纳地知道\[N_2(k) = \sum _{j=1}^{k-2} j = \sum_{j=1}^{k-2} N_1(j)\chi_{\{ k\geq 1\} }\]
+% 假如claim在k-1时成立，下面考虑k时。\\
