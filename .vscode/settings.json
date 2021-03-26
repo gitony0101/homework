@@ -1,5 +1,4 @@
 {
     "python.formatting.provider": "black",
-    "jupyter.jupyterServerType": "local",
-    "python.pythonPath": "/usr/local/Caskroom/miniconda/base/envs/jnb/bin/python"
+    "jupyter.jupyterServerType": "remote"
 }
