@@ -10,9 +10,9 @@
 
 <style type="text/css">
     pre { line-height: 125%; }
-td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
-span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
-td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+td.linenos pre { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
+td.linenos pre.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
 .highlight .hll { background-color: var(--jp-cell-editor-active-background) }
 .highlight { background: var(--jp-cell-editor-background); color: var(--jp-mirror-editor-variable-color) }
@@ -14866,7 +14866,7 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[&lt;matplotlib.lines.Line2D at 0x7ffd005e8e20&gt;]</pre>
+<pre>[&lt;matplotlib.lines.Line2D at 0x7f913c1832e0&gt;]</pre>
 </div>
 
 </div>
@@ -14992,7 +14992,7 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[&lt;matplotlib.lines.Line2D at 0x7ffd00669be0&gt;]</pre>
+<pre>[&lt;matplotlib.lines.Line2D at 0x7f913b7d51f0&gt;]</pre>
 </div>
 
 </div>
@@ -15302,16 +15302,16 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>0.2994012085009041
-0.5343694399350725
-0.6821365615336084
-0.785436285409517
-0.8681595514495506
+<pre>0.29940120850090357
+0.5343694399350718
+0.6821365615336076
+0.7854362854095165
+0.8681595514495504
 0.9238890559524369
-0.9628600598587197
+0.9628600598587196
 0.9768919210108361
 0.9874405423283974
-0.9922141008322909
+0.992214100832291
 </pre>
 </div>
 </div>
@@ -15351,6 +15351,10 @@ for the generated X matrix in #1</p>
 <p>(1) Estimate the regression line using the least square method and find out the predicted values, residuals for each observation and the mean square errors.</p>
 <p>(2) Estimate the regression line using the least square method based on the first 5 principal components and find out the predicted values, residuals for each observation and the mean square errors.</p>
 <p>(3) Compare the results in (1) and (2).</p>
+<p>Here we define:
+$\epsilon$~N(0,4)</p>
+<p>Trainning set :150</p>
+<p>Testing set: 50</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -15361,7 +15365,7 @@ for the generated X matrix in #1</p>
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># (1) Estimate the regression line using the least square method and find out the predicted values, residuals for each observation and the mean square errors.</span>
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">linear_model</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span><span class="n">r2_score</span>
 </pre></div>
 
      </div>
@@ -15586,7 +15590,7 @@ for the generated X matrix in #1</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Variance score: </span><span class="si">%.2f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Variance score: </span><span class="si">%.2f</span><span class="s1">(best fit = 1)&#39;</span> <span class="o">%</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -15606,7 +15610,7 @@ for the generated X matrix in #1</p>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Variance score: 0.98
+<pre>Variance score: 0.98(best fit = 1)
 </pre>
 </div>
 </div>
@@ -15834,7 +15838,7 @@ for the generated X matrix in #1</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[42]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Variance score: </span><span class="si">%.2f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test5</span><span class="p">,</span> <span class="n">y_pred5</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Variance score: </span><span class="si">%.2f</span><span class="s1">(best fit = 1)&#39;</span> <span class="o">%</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test5</span><span class="p">,</span> <span class="n">y_pred5</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -15854,7 +15858,7 @@ for the generated X matrix in #1</p>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Variance score: 0.76
+<pre>Variance score: 0.76(best fit = 1)
 </pre>
 </div>
 </div>
@@ -15924,7 +15928,7 @@ for the generated X matrix in #1</p>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Based on the test 1 and 2 the ,the reusults 1 performed better with the lower MSE and better regression in graph.</p>
+<p>Based on the data and test 1 and 2 the ,the reusults 1 performed better with the lower MSE and better regression in graph.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
