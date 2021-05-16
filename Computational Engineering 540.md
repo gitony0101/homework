@@ -1,14 +1,7 @@
 # Computational Engineering 540
 
----
+21 Spring By MK
 
-
-
-
-
-```
-
-```
 
 ## Monte Carlo Method
 
@@ -40,6 +33,7 @@
 
 ##### Overview
 
+
 ## Basic Multivariate Normal Statistics
 
 ### Basic Probabilities
@@ -60,8 +54,8 @@
 
 ###### Shurr Complimentary
 
-
 ##### Conditional pdf known,find joint dist
+
 
 ## Multiple Linear Regression (MLR)
 
@@ -69,6 +63,29 @@
 
 #### MLR & MLE compare
 
+
 ## Principle Component Analysis
 
-## Canonical Component Analysis
+### Concept
+
+reshape the original feature space
+
+### Application
+
+#### Dimensinality reductions
+
+#### Feature Extraction
+
+### PCA Steps
+
+### Drawbacks of PCA
+
+
+## Canonical Component Analysis(CCA)
+
+
+## KNN
+
+## Neutral Network
+
+### Artifitial Neutral Network(MLP:Multilayer Perceptron)
